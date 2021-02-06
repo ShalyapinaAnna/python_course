@@ -8,7 +8,5 @@ def duplicates(lst):
 
 list1 = [1, 2, 3, 4, 5]
 list2 = [1, 2, 2, 3, 4]
-print(duplicates(list1))
-print(duplicates(list2))
-
-#здесь тоже None после результата показывает
+duplicates(list1)
+duplicates(list2)
