@@ -1,8 +1,8 @@
 import csv
 with open('stage3_test.csv', 'r', encoding='utf-8') as csvfile1:
+    fieldnames = ['Id', 'Images', 'Title', 'Description', 'Price']
     reader = csv.reader(csvfile1)
     with open('csv2.csv', 'w', encoding='utf-8') as csvfile2:
-        fieldnames = ["Id", "Images", "Title", "Description", "Price"]
         writer = csv.DictWriter(csvfile2, fieldnames=fieldnames)
         writer.writeheader()
         for row in reader:
