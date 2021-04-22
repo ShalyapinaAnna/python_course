@@ -6,13 +6,7 @@ with open('RomeoAndJuliet.json', 'r', encoding='utf-8') as file1:
     for act in read_file['acts']:
         for scene in act['scenes']:
             for action in scene['action']:
-                if action['character'] in chs.keys():
-                    chs[action['character']].append(action['says'])
-                else:
-                    chs[action['character']] = [action['says']]
+                chs[action['character']] = len(action['says'])
 
-for hero in chs:
-    chs[hero] = len(chs[hero])
-
-count = collections.Counter(chs)
-print(count.most_common())
+chs2 = collections.Counter(chs)
+print(chs2.most_common())

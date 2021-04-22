@@ -10,7 +10,3 @@ with open('stage3_test.csv', encoding='utf-8') as csvfile1:
 with open('csv642.txt', 'w', encoding='utf-8') as text:
     text.write(str(OrderedDict(sorted(dictionary.items(), key=lambda t: t[1]))))
     text.write(str(OrderedDict(sorted(dictionary.items(), key=lambda t: t[1], reverse=True))))
-
-
-
-

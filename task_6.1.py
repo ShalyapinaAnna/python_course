@@ -1,29 +1,17 @@
 import collections
 import json
-chs = {}
+words = collections.Counter()
 with open('RomeoAndJuliet.json', 'r', encoding='utf-8') as file1:
     read_file = json.load(file1)
     for act in read_file['acts']:
         for scene in act['scenes']:
             for action in scene['action']:
-                if action['character'] in chs.keys():
-                    chs[action['character']].append(action['says'])
-                else:
-                    chs[action['character']] = [action['says']]
+                w = ' '.join(action['says']).replace('?', ' ').replace(',', ' ').replace('!', ' ').replace(':', '').replace('-', ' ').replace('.', ' ').replace('[', ' ').replace(']', ' ').replace("'", ' ').replace(';', ' ').replace('"', ' ').lower()
+                wo = w.split(' ')
+                for word in wo:
+                    if word != '':
+                        words[word] += 1
 
-dictionary = ''
-for hero in chs.keys():
-    for line in chs[hero]:
-        dictionary += str(line)
-
-dictionary = dictionary.replace('?', ' ').replace(',', ' ').replace('!', ' ').replace(':', '').replace('-', ' ')\
-    .replace('.', ' ').replace('[', ' ').replace(']', ' ').replace("'", ' ').replace(';', ' ').replace('"', ' ').lower()
-vocab = dictionary.split(" ")
-vocab1 = []
-for elem in vocab:
-    if elem != '':
-        vocab1.append(elem)
-count = collections.Counter(vocab1)
-often_list = count.most_common(20)
-rarely_list = count.most_common()[-20:-1]
+often_list = words.most_common(20)
+rarely_list = words.most_common()[-20:-1]
 print(often_list, '\n', rarely_list)
